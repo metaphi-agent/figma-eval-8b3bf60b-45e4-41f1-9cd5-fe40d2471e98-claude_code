@@ -1,8 +1,10 @@
 {
   "session_id": "figma_20260130_063022",
   "created_at": "2026-01-30T06:30:22.343911+00:00",
-  "updated_at": "2026-01-30T06:37:08.049972+00:00",
-  "phase": "building",
+  "updated_at": "2026-01-30T06:39:17.030062+00:00",
+  "phase": "complete",
   "figma_file_key": "yL22amtmT7YzJNYv9UE3Xy",
-  "preview_url": "https://ta-01kg6swjjjfkyt4dcd0776sjqe-5173.wo-ybzmwyzf3qhlkwkj7fu2jrjsb.w.modal.host"
+  "preview_url": "https://ta-01kg6swjjjfkyt4dcd0776sjqe-5173.wo-ybzmwyzf3qhlkwkj7fu2jrjsb.w.modal.host",
+  "dist_path": "/figma-claude/claude-sonnet-4-5-20250929/8b3bf60b-45e4-41f1-9cd5-fe40d2471e98/dist",
+  "completed_at": "2026-01-30T06:39:17.030086+00:00"
 }
