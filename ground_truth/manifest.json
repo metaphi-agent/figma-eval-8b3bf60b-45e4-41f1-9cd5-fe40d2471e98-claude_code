@@ -1,0 +1,78 @@
+{
+  "figma_file_key": "yL22amtmT7YzJNYv9UE3Xy",
+  "total_frames": 12,
+  "frames": [
+    {
+      "name": "Dashboard-1",
+      "node_id": "54:3148",
+      "gt_image": "54-3148.png",
+      "target_route": "/"
+    },
+    {
+      "name": "Dashboard-2",
+      "node_id": "54:3151",
+      "gt_image": "54-3151.png",
+      "target_route": "/dashboard-2"
+    },
+    {
+      "name": "Dashboard-3",
+      "node_id": "54:3531",
+      "gt_image": "54-3531.png",
+      "target_route": "/dashboard-3"
+    },
+    {
+      "name": "Users",
+      "node_id": "54:8622",
+      "gt_image": "54-8622.png",
+      "target_route": "/users"
+    },
+    {
+      "name": "Add User - Personal Info",
+      "node_id": "54:8915",
+      "gt_image": "54-8915.png",
+      "target_route": "/users/add"
+    },
+    {
+      "name": "Add User - Team",
+      "node_id": "54:8954",
+      "gt_image": "54-8954.png",
+      "target_route": "/users/add?tab=team"
+    },
+    {
+      "name": "Add User - Billing",
+      "node_id": "54:9014",
+      "gt_image": "54-9014.png",
+      "target_route": "/users/add?tab=billing"
+    },
+    {
+      "name": "Add User - Notifications",
+      "node_id": "54:9053",
+      "gt_image": "54-9053.png",
+      "target_route": "/users/add?tab=notifications"
+    },
+    {
+      "name": "Messages",
+      "node_id": "54:14878",
+      "gt_image": "54-14878.png",
+      "target_route": "/messages"
+    },
+    {
+      "name": "Kanban",
+      "node_id": "54:15028",
+      "gt_image": "54-15028.png",
+      "target_route": "/kanban"
+    },
+    {
+      "name": "Calendar",
+      "node_id": "54:14254",
+      "gt_image": "54-14254.png",
+      "target_route": "/calendar"
+    },
+    {
+      "name": "Products",
+      "node_id": "54:15162",
+      "gt_image": "54-15162.png",
+      "target_route": "/products"
+    }
+  ]
+}
