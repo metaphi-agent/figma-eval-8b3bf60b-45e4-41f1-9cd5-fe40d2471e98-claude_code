@@ -1,22 +1,30 @@
-import { Routes, Route } from 'react-router-dom';
-import { Dashboard } from './pages/Dashboard';
-import { Users } from './pages/Users';
-import { Messages } from './pages/Messages';
-import { Kanban } from './pages/Kanban';
-import { Calendar } from './pages/Calendar';
-import { Products } from './pages/Products';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import PageLayout from './components/layout/PageLayout'
+import { Dashboard } from './pages/Dashboard'
+import { Users } from './pages/Users'
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/dashboard-2" element={<Dashboard />} />
-      <Route path="/dashboard-3" element={<Dashboard />} />
-      <Route path="/users" element={<Users />} />
-      <Route path="/messages" element={<Messages />} />
-      <Route path="/kanban" element={<Kanban />} />
-      <Route path="/calendar" element={<Calendar />} />
-      <Route path="/products" element={<Products />} />
-    </Routes>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="dashboard-2" element={<Dashboard />} />
+          <Route path="dashboard-3" element={<Dashboard />} />
+          <Route path="reports" element={<Dashboard />} />
+          <Route path="products" element={<Dashboard />} />
+          <Route path="task" element={<Dashboard />} />
+          <Route path="features" element={<Dashboard />} />
+          <Route path="pricing" element={<Dashboard />} />
+          <Route path="integrations" element={<Dashboard />} />
+          <Route path="settings" element={<Dashboard />} />
+          <Route path="template-pages" element={<Dashboard />} />
+          <Route path="messages" element={<Dashboard />} />
+          <Route path="kanban" element={<Dashboard />} />
+          <Route path="calendar" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Router>
+  )
 }

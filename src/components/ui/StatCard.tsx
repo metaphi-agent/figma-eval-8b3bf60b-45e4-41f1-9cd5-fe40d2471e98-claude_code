@@ -9,7 +9,7 @@ interface StatCardProps {
   change: string;
   positive: boolean;
   icon: ReactNode;
-  color?: string;
+  color?: 'purple' | 'yellow' | 'blue' | 'green';
 }
 
 export function StatCard({ label, value, change, positive, icon, color = 'purple' }: StatCardProps) {
@@ -18,38 +18,38 @@ export function StatCard({ label, value, change, positive, icon, color = 'purple
       <div className="flex items-start justify-between mb-4">
         <div
           className={cn(
-            'w-10 h-10 rounded-lg flex items-center justify-center',
-            color === 'purple' && 'bg-purple-50',
-            color === 'yellow' && 'bg-yellow-50',
-            color === 'blue' && 'bg-blue-50',
-            color === 'red' && 'bg-red-50'
+            'w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center',
+            color === 'purple' && 'bg-[var(--color-primary)]/10',
+            color === 'yellow' && 'bg-[var(--color-secondary-orange)]/10',
+            color === 'blue' && 'bg-[var(--color-secondary-cyan)]/10',
+            color === 'green' && 'bg-[var(--color-success)]/10'
           )}
         >
           <span
             className={cn(
               'text-lg',
-              color === 'purple' && 'text-primary-500',
-              color === 'yellow' && 'text-yellow-300',
-              color === 'blue' && 'text-blue-400',
-              color === 'red' && 'text-red-300'
+              color === 'purple' && 'text-[var(--color-primary)]',
+              color === 'yellow' && 'text-[var(--color-secondary-orange)]',
+              color === 'blue' && 'text-[var(--color-secondary-cyan)]',
+              color === 'green' && 'text-[var(--color-success)]'
             )}
           >
             {icon}
           </span>
         </div>
-        <button className="text-neutral-400 hover:text-white transition-colors">
+        <button className="text-[var(--color-neutral-400)] hover:text-white transition-colors">
           <MoreVertical size={18} />
         </button>
       </div>
 
       <div className="space-y-2">
-        <div className="text-sm text-neutral-400">{label}</div>
+        <div className="text-sm text-[var(--color-neutral-400)]">{label}</div>
         <div className="flex items-end justify-between">
           <div className="text-3xl font-semibold text-white">{value}</div>
           <div
             className={cn(
               'flex items-center gap-1 text-sm font-medium',
-              positive ? 'text-green-300' : 'text-red-300'
+              positive ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'
             )}
           >
             {positive ? <TrendingUp size={16} /> : <TrendingDown size={16} />}

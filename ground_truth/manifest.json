@@ -1,78 +1,91 @@
 {
   "figma_file_key": "yL22amtmT7YzJNYv9UE3Xy",
+  "figma_file_name": "Free Dark Admin Dashboards (Community)",
   "total_frames": 12,
   "frames": [
     {
       "name": "Dashboard-1",
       "node_id": "54:3148",
-      "gt_image": "54-3148.png",
-      "target_route": "/"
+      "gt_image": "Dashboard-1.png",
+      "target_route": "/",
+      "description": "Main dashboard with metrics, charts, reports overview, and world map"
     },
     {
       "name": "Dashboard-2",
       "node_id": "54:3151",
-      "gt_image": "54-3151.png",
-      "target_route": "/dashboard-2"
+      "gt_image": "Dashboard-2.png",
+      "target_route": "/dashboard-2",
+      "description": "Alternative dashboard view"
     },
     {
       "name": "Dashboard-3",
       "node_id": "54:3531",
-      "gt_image": "54-3531.png",
-      "target_route": "/dashboard-3"
+      "gt_image": "Dashboard-3.png",
+      "target_route": "/dashboard-3",
+      "description": "Third dashboard variant"
     },
     {
       "name": "Users",
       "node_id": "54:8622",
-      "gt_image": "54-8622.png",
-      "target_route": "/users"
+      "gt_image": "Users.png",
+      "target_route": "/users",
+      "description": "User management page with data table, search, and filters"
     },
     {
       "name": "Add User - Personal Info",
       "node_id": "54:8915",
-      "gt_image": "54-8915.png",
-      "target_route": "/users/add"
+      "gt_image": "Add-Users.png",
+      "target_route": "/users/add",
+      "description": "Add new user form - personal information tab"
     },
     {
       "name": "Add User - Team",
       "node_id": "54:8954",
       "gt_image": "54-8954.png",
-      "target_route": "/users/add?tab=team"
+      "target_route": "/users/add?tab=team",
+      "description": "Add new user form - team tab"
     },
     {
       "name": "Add User - Billing",
       "node_id": "54:9014",
       "gt_image": "54-9014.png",
-      "target_route": "/users/add?tab=billing"
+      "target_route": "/users/add?tab=billing",
+      "description": "Add new user form - billing tab"
     },
     {
       "name": "Add User - Notifications",
       "node_id": "54:9053",
       "gt_image": "54-9053.png",
-      "target_route": "/users/add?tab=notifications"
+      "target_route": "/users/add?tab=notifications",
+      "description": "Add new user form - notifications tab"
     },
     {
       "name": "Messages",
       "node_id": "54:14878",
-      "gt_image": "54-14878.png",
-      "target_route": "/messages"
+      "gt_image": "Messages.png",
+      "target_route": "/messages",
+      "description": "Messaging interface with conversation list and chat"
     },
     {
       "name": "Kanban",
       "node_id": "54:15028",
-      "gt_image": "54-15028.png",
-      "target_route": "/kanban"
+      "gt_image": "Kanban.png",
+      "target_route": "/kanban",
+      "description": "Kanban board for task management"
     },
     {
       "name": "Calendar",
       "node_id": "54:14254",
-      "gt_image": "54-14254.png",
-      "target_route": "/calendar"
+      "gt_image": "Calendar.png",
+      "target_route": "/calendar",
+      "description": "Calendar view for scheduling"
     },
     {
       "name": "Products",
       "node_id": "54:15162",
-      "gt_image": "54-15162.png",
-      "target_route": "/products"
+      "gt_image": "Product-List.png",
+      "target_route": "/products",
+      "description": "Product listing with cards layout"
     }
   ]
 }

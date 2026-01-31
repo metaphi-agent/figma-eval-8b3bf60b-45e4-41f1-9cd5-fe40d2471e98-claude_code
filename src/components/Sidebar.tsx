@@ -92,7 +92,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="w-[300px] h-screen bg-dark-bg border-r border-dark-border flex flex-col fixed left-0 top-0">
+    <div className="w-[280px] h-screen bg-[var(--color-neutral-800)] border-r border-[var(--color-neutral-600)] flex flex-col fixed left-0 top-0">
       {/* Logo */}
       <div className="px-6 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -102,10 +102,10 @@ export function Sidebar() {
           <span className="text-xl font-semibold text-white">Dashdark X</span>
         </div>
         <div className="flex gap-1">
-          <button className="w-6 h-6 flex items-center justify-center text-neutral-400 hover:text-white transition-colors">
+          <button className="w-6 h-6 flex items-center justify-center text-[var(--color-neutral-400)] hover:text-white transition-colors">
             <ChevronLeft size={16} />
           </button>
-          <button className="w-6 h-6 flex items-center justify-center text-neutral-400 hover:text-white transition-colors">
+          <button className="w-6 h-6 flex items-center justify-center text-[var(--color-neutral-400)] hover:text-white transition-colors">
             <ChevronRight size={16} />
           </button>
         </div>
@@ -129,10 +129,10 @@ export function Sidebar() {
                 <button
                   onClick={() => toggleExpand(item.label)}
                   className={cn(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded transition-colors',
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] transition-all duration-200',
                     expandedItems.includes(item.label)
-                      ? 'text-primary-500 bg-[#1A0F2E]'
-                      : 'text-neutral-300 hover:text-white hover:bg-dark-surface'
+                      ? 'text-[var(--color-primary)] bg-[#1A0F2E]'
+                      : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                   )}
                 >
                   {item.icon}
@@ -150,10 +150,10 @@ export function Sidebar() {
                         key={child.path}
                         to={child.path}
                         className={cn(
-                          'block px-3 py-2 text-sm rounded transition-colors',
+                          'block px-3 py-2 text-sm rounded-[var(--radius-md)] transition-colors',
                           location.pathname === child.path
-                            ? 'text-white bg-gradient-to-r from-primary-500/20 to-transparent border-l-2 border-primary-500'
-                            : 'text-neutral-400 hover:text-white hover:bg-dark-surface'
+                            ? 'text-white bg-gradient-to-r from-[var(--color-primary)]/20 to-transparent border-l-2 border-[var(--color-primary)]'
+                            : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                         )}
                       >
                         {child.label}
@@ -166,10 +166,10 @@ export function Sidebar() {
               <Link
                 to={item.path || '#'}
                 className={cn(
-                  'w-full flex items-center gap-3 px-3 py-2.5 rounded transition-colors',
+                  'w-full flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] transition-all duration-200',
                   isActive(item.path)
-                    ? 'text-white bg-dark-surface'
-                    : 'text-neutral-300 hover:text-white hover:bg-dark-surface'
+                    ? 'text-white bg-[var(--color-neutral-700)]'
+                    : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                 )}
               >
                 {item.icon}
@@ -179,7 +179,7 @@ export function Sidebar() {
           </div>
         ))}
 
-        <div className="h-px bg-dark-border my-4" />
+        <div className="h-px bg-[var(--color-neutral-600)] my-4" />
 
         {bottomNavItems.map((item) => (
           <div key={item.label} className="mb-1">
@@ -188,10 +188,10 @@ export function Sidebar() {
                 <button
                   onClick={() => toggleExpand(item.label)}
                   className={cn(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded transition-colors',
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] transition-all duration-200',
                     expandedItems.includes(item.label)
-                      ? 'text-primary-500 bg-[#1A0F2E]'
-                      : 'text-neutral-300 hover:text-white hover:bg-dark-surface'
+                      ? 'text-[var(--color-primary)] bg-[#1A0F2E]'
+                      : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                   )}
                 >
                   {item.icon}
@@ -209,10 +209,10 @@ export function Sidebar() {
                         key={child.path}
                         to={child.path}
                         className={cn(
-                          'block px-3 py-2 text-sm rounded transition-colors',
+                          'block px-3 py-2 text-sm rounded-[var(--radius-md)] transition-colors',
                           location.pathname === child.path
-                            ? 'text-white bg-gradient-to-r from-primary-500/20 to-transparent border-l-2 border-primary-500'
-                            : 'text-neutral-400 hover:text-white hover:bg-dark-surface'
+                            ? 'text-white bg-gradient-to-r from-[var(--color-primary)]/20 to-transparent border-l-2 border-[var(--color-primary)]'
+                            : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                         )}
                       >
                         {child.label}
@@ -225,10 +225,10 @@ export function Sidebar() {
               <Link
                 to={item.path || '#'}
                 className={cn(
-                  'w-full flex items-center gap-3 px-3 py-2.5 rounded transition-colors',
+                  'w-full flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] transition-all duration-200',
                   isActive(item.path)
-                    ? 'text-white bg-dark-surface'
-                    : 'text-neutral-300 hover:text-white hover:bg-dark-surface'
+                    ? 'text-white bg-[var(--color-neutral-700)]'
+                    : 'text-[var(--color-neutral-400)] hover:text-white hover:bg-[var(--color-neutral-700)]'
                 )}
               >
                 {item.icon}
@@ -241,19 +241,19 @@ export function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div className="p-3 border-t border-dark-border">
+      <div className="p-3 border-t border-[var(--color-neutral-600)]">
         <Link
           to="#"
-          className="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-dark-surface transition-colors"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] hover:bg-[var(--color-neutral-700)] transition-colors"
         >
-          <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-sm font-semibold">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] rounded-full flex items-center justify-center text-sm font-semibold">
             JC
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-sm font-medium text-white truncate">John Carter</div>
-            <div className="text-xs text-neutral-400 truncate">Account settings</div>
+            <div className="text-xs text-[var(--color-neutral-400)] truncate">Account settings</div>
           </div>
-          <ChevronRight size={16} className="text-neutral-400" />
+          <ChevronRight size={16} className="text-[var(--color-neutral-400)]" />
         </Link>
       </div>
 
