@@ -1,50 +1,32 @@
-import { ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import clsx from 'clsx';
+
+type BadgeVariant = 'success' | 'error' | 'warning' | 'info' | 'default' | 'purple' | 'cyan';
 
 interface BadgeProps {
-  children: ReactNode;
-  variant?: 'online' | 'offline' | 'pending' | 'completed' | 'green' | 'red' | 'yellow' | 'gray' | 'blue' | 'purple' | 'orange';
-  size?: 'sm' | 'md';
+  children: React.ReactNode;
+  variant?: BadgeVariant;
   className?: string;
-  dot?: boolean;
 }
 
-export function Badge({ children, variant = 'gray', size = 'sm', className, dot = false }: BadgeProps) {
+const variantStyles: Record<BadgeVariant, string> = {
+  success: 'bg-green-900/50 text-green-400 border-green-500/30',
+  error: 'bg-red-900/50 text-red-400 border-red-500/30',
+  warning: 'bg-yellow-900/50 text-yellow-400 border-yellow-500/30',
+  info: 'bg-blue-900/50 text-blue-400 border-blue-500/30',
+  default: 'bg-neutral-600/50 text-neutral-300 border-neutral-500/30',
+  purple: 'bg-primary/20 text-primary-light border-primary/30',
+  cyan: 'bg-cyan/20 text-cyan border-cyan/30',
+};
+
+export function Badge({ children, variant = 'default', className }: BadgeProps) {
   return (
     <span
-      className={cn(
-        'inline-flex items-center gap-1.5 rounded-[var(--radius-sm)] font-medium',
-        {
-          'bg-[var(--color-success-light)] text-[var(--color-success)] border border-[var(--color-success)]/20': variant === 'online' || variant === 'green',
-          'bg-[var(--color-neutral-700)] text-[var(--color-neutral-400)] border border-[var(--color-neutral-600)]': variant === 'offline' || variant === 'gray',
-          'bg-[var(--color-warning-light)] text-[var(--color-secondary-orange)] border border-[var(--color-secondary-orange)]/20': variant === 'pending' || variant === 'yellow' || variant === 'orange',
-          'bg-[var(--color-success-light)] text-[var(--color-success)] border border-[var(--color-success)]/20': variant === 'completed',
-          'bg-[var(--color-error-light)] text-[var(--color-error)] border border-[var(--color-error)]/20': variant === 'red',
-          'bg-[var(--color-secondary-cyan)]/10 text-[var(--color-secondary-cyan)] border border-[var(--color-secondary-cyan)]/20': variant === 'blue',
-          'bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20': variant === 'purple',
-        },
-        {
-          'px-2 py-0.5 text-xs': size === 'sm',
-          'px-3 py-1 text-sm': size === 'md',
-        },
+      className={clsx(
+        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border',
+        variantStyles[variant],
         className
       )}
     >
-      {dot && (
-        <span
-          className={cn(
-            'w-1.5 h-1.5 rounded-full',
-            {
-              'bg-[var(--color-success)]': variant === 'online' || variant === 'green' || variant === 'completed',
-              'bg-[var(--color-neutral-500)]': variant === 'offline' || variant === 'gray',
-              'bg-[var(--color-secondary-orange)]': variant === 'pending' || variant === 'yellow' || variant === 'orange',
-              'bg-[var(--color-error)]': variant === 'red',
-              'bg-[var(--color-secondary-cyan)]': variant === 'blue',
-              'bg-[var(--color-primary)]': variant === 'purple',
-            }
-          )}
-        />
-      )}
       {children}
     </span>
   );

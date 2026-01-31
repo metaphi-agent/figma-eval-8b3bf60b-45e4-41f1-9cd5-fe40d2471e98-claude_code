@@ -1,27 +1,38 @@
-import { ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import clsx from 'clsx';
 
 interface CardProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
-  padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-export function Card({ children, className, padding = 'md' }: CardProps) {
+export function Card({ children, className }: CardProps) {
   return (
     <div
-      className={cn(
-        'bg-[var(--color-neutral-700)] border border-[var(--color-neutral-600)] rounded-[var(--radius-lg)]',
-        {
-          'p-0': padding === 'none',
-          'p-4': padding === 'sm',
-          'p-6': padding === 'md',
-          'p-8': padding === 'lg',
-        },
+      className={clsx(
+        'bg-neutral-700 rounded-2xl border border-neutral-600/50 p-6',
         className
       )}
     >
       {children}
+    </div>
+  );
+}
+
+interface CardHeaderProps {
+  title: string;
+  subtitle?: string;
+  action?: React.ReactNode;
+  className?: string;
+}
+
+export function CardHeader({ title, subtitle, action, className }: CardHeaderProps) {
+  return (
+    <div className={clsx('flex items-start justify-between mb-4', className)}>
+      <div>
+        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        {subtitle && <p className="text-sm text-neutral-300 mt-0.5">{subtitle}</p>}
+      </div>
+      {action && <div>{action}</div>}
     </div>
   );
 }

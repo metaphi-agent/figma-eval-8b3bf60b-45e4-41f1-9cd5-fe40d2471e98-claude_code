@@ -1,46 +1,57 @@
-# Dashdark X - Admin Dashboard
+# Dashdark X Admin Dashboard
 
-A professional dark-themed admin dashboard built with React, TypeScript, and Tailwind CSS v4. Converted from Figma design to production-ready code.
+A modern, dark-themed admin dashboard built with React, Tailwind CSS v4, and Vite. This project was implemented based on a Figma design.
 
-## 🎨 Design
+## Features
 
-- **Figma File**: [Free Dark Admin Dashboards](https://www.figma.com/design/yL22amtmT7YzJNYv9UE3Xy/Free-Dark-Admin-Dashboards--Community-)
-- **Designer**: Malik Ali for Figma Design Community
-- **Framework**: Material-UI inspired components
+- **Dashboard** - Overview with stats cards, revenue charts, profit tracking, and session analytics
+- **Analytics** - Detailed data visualizations with website visitors, revenue by customer type, and team progress
+- **Users** - User management with searchable table, pagination, and status indicators
+- **Add User** - Multi-step wizard (4 steps) for creating new users with form validation
+- **Messages** - Real-time chat interface with contact list and message threads
+- **Kanban** - Task management board with drag-and-drop columns (To Do, In Progress, Completed)
+- **Calendar** - Year overview with mini calendar and people management
+- **Products** - Product listing with filtering, color variants, and status badges
 
-## 🚀 Features
-
-- ✅ **12 Complete Pages**: Dashboard variants, User management, Messages, Kanban, Calendar, Products
-- ✅ **Dark Mode Design**: Professional dark theme with purple accent colors
-- ✅ **Responsive Layout**: Adapts to all screen sizes
-- ✅ **Modern Stack**: React 19, TypeScript, Vite 6, Tailwind CSS v4
-- ✅ **Component Library**: Reusable UI components (Button, Input, Card, Badge)
-- ✅ **Navigation**: React Router with sidebar navigation
-- ✅ **Icons**: Lucide React icon library
-- ✅ **Type-Safe**: Full TypeScript support
-
-## 📦 Tech Stack
+## Tech Stack
 
 - **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite 6** - Build tool
-- **Tailwind CSS v4** - Styling with CSS @theme
-- **React Router 7** - Client-side routing
+- **React Router v7** - Client-side routing
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **Vite 6** - Build tool and dev server
 - **Lucide React** - Icon library
-- **clsx** - Utility for className management
+- **clsx** - Conditional class names
+- **Framer Motion** - Animations
 
-## 🎯 Pages
+## Project Structure
 
-1. **Dashboard** (`/`) - Main analytics dashboard with charts and stats
-2. **Dashboard 2** (`/dashboard-2`) - Alternative dashboard view
-3. **Dashboard 3** (`/dashboard-3`) - Third dashboard variant
-4. **Users** (`/users`) - User management table with pagination
-5. **Messages** (`/messages`) - Chat interface
-6. **Kanban** (`/kanban`) - Kanban board for task management
-7. **Calendar** (`/calendar`) - Calendar view with events
-8. **Products** (`/products`) - Product list table
+```
+src/
+  components/
+    ui/           # Reusable UI components (Button, Card, Badge, Input, Table, Avatar)
+    blocks/       # Layout components (Sidebar, Layout, Charts, PageHeader)
+  pages/          # Page components
+    Dashboard.tsx
+    Analytics.tsx
+    Users.tsx
+    AddUser.tsx
+    Messages.tsx
+    Kanban.tsx
+    Calendar.tsx
+    Products.tsx
+  App.tsx         # Main app with routing
+  main.tsx        # Entry point
+  index.css       # Global styles and Tailwind theme
+```
 
-## 🛠️ Installation
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
 # Install dependencies
@@ -53,32 +64,28 @@ npm run dev
 npm run build
 ```
 
-## 🎨 Design Tokens
+## Design Tokens
 
-The dashboard uses a custom design system with:
-- **Primary Colors**: Purple gradient (#CB3CFF to #7F25FB)
-- **Dark Background**: #081028
-- **Typography**: System fonts
-- **Spacing**: Consistent 4px grid system
-- **Shadows**: Multiple shadow utilities
+The project uses a custom color palette defined in `design_tokens.json` and implemented in `src/index.css`:
 
-## 📱 Responsive Design
+- **Primary**: Purple gradient (#CB3CFF to #7B2FFF)
+- **Secondary**: Cyan (#05C3DD), Teal (#00BFA5)
+- **Neutral**: Dark blues ranging from #081028 to #F1F5F9
+- **System**: Green, Red, Yellow, Blue for status indicators
 
-- Mobile-first approach
-- Collapsible sidebar navigation
-- Responsive tables and grids
-- Optimized for all screen sizes
+## Routes
 
-## 🔗 Live Preview
+| Route | Page |
+|-------|------|
+| `/` | Dashboard |
+| `/analytics` | Analytics |
+| `/users` | Users List |
+| `/users/add` | Add User Wizard |
+| `/messages` | Messages/Chat |
+| `/kanban` | Kanban Board |
+| `/calendar` | Calendar |
+| `/products` | Products List |
 
-[View Live Demo](https://ta-01kg6swjjjfkyt4dcd0776sjqe-5173.wo-ybzmwyzf3qhlkwkj7fu2jrjsb.w.modal.host)
+## License
 
-## 📝 License
-
-This project was generated from a Community Figma file for educational and demonstration purposes.
-
-## 🙏 Credits
-
-- **Original Design**: [Malik Ali](https://www.figma.com/@malikaliux)
-- **Figma Community**: Free Dark Admin Dashboards template
-- **Code Generation**: Claude Code by Anthropic
+MIT
