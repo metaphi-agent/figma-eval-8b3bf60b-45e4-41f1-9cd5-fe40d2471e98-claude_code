@@ -1,53 +1,33 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Check, Upload } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
+import { User, Users, CreditCard, Bell, Upload, Phone, Briefcase, MapPin, Globe, Mail, Pencil } from 'lucide-react';
 import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
+import { Input, SearchInput } from '../components/ui/Input';
 import { Avatar } from '../components/ui/Avatar';
 import clsx from 'clsx';
 
-const steps = [
-  { id: 1, label: 'Credentials', description: 'Provide your account username and password credential.' },
-  { id: 2, label: 'Personal Information', description: 'Provide your personal information.' },
-  { id: 3, label: 'Setting', description: 'Set up your account preferences.' },
-  { id: 4, label: 'Billing', description: 'Add your billing information.' },
+const tabs = [
+  { id: 'personal', label: 'Personal Information', icon: Pencil },
+  { id: 'team', label: 'Team', icon: Users },
+  { id: 'billing', label: 'Billing', icon: CreditCard },
+  { id: 'notifications', label: 'Notifications', icon: Bell },
 ];
 
 export default function AddUserPage() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentStep = parseInt(searchParams.get('step') || '1');
-
+  const currentTab = searchParams.get('tab') || 'personal';
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    country: 'US',
-    address: '',
-    // ... add more fields as needed
+    fullName: 'John Carter',
+    email: 'john@dashdark.com',
+    shortDescription: '',
+    phone: '(123) 456 - 7890',
+    position: 'CEO & Founder',
+    location: 'New York, NY',
+    website: 'dashdark.com',
   });
 
-  const goToStep = (step: number) => {
-    setSearchParams({ step: step.toString() });
-  };
-
-  const handleNext = () => {
-    if (currentStep < 4) {
-      goToStep(currentStep + 1);
-    } else {
-      navigate('/users');
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      goToStep(currentStep - 1);
-    }
+  const setTab = (tab: string) => {
+    setSearchParams({ tab });
   };
 
   return (
@@ -56,184 +36,215 @@ export default function AddUserPage() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-white">Add User</h1>
         <div className="w-80">
-          <Input placeholder="Search for..." />
+          <SearchInput placeholder="Search for..." />
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
-        {/* Sidebar Steps */}
-        <Card className="p-6">
-          <div className="space-y-4">
-            {steps.map((step, index) => (
-              <button
-                key={step.id}
-                onClick={() => goToStep(step.id)}
-                className={clsx(
-                  'w-full flex items-start gap-4 p-4 rounded-xl text-left transition-colors',
-                  currentStep === step.id
-                    ? 'bg-neutral-600/50'
-                    : 'hover:bg-neutral-600/30'
-                )}
-              >
-                <div
-                  className={clsx(
-                    'w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium shrink-0',
-                    currentStep > step.id
-                      ? 'bg-green-500 text-white'
-                      : currentStep === step.id
-                      ? 'bg-primary text-white'
-                      : 'bg-neutral-600 text-neutral-300'
-                  )}
-                >
-                  {currentStep > step.id ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    step.id
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p
+      <div className="flex gap-6">
+        {/* Sidebar - Credentials */}
+        <div className="w-72 shrink-0">
+          <Card className="p-4">
+            <h3 className="text-sm font-medium text-neutral-400 mb-4 px-2">Credentials</h3>
+            <nav className="space-y-1">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setTab(tab.id)}
                     className={clsx(
-                      'font-medium',
-                      currentStep >= step.id ? 'text-white' : 'text-neutral-400'
+                      'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm transition-colors',
+                      currentTab === tab.id
+                        ? 'bg-neutral-600/50 text-primary'
+                        : 'text-neutral-300 hover:bg-neutral-600/30 hover:text-white'
                     )}
                   >
-                    {step.label}
-                  </p>
-                  <p className="text-xs text-neutral-400 mt-0.5">{step.description}</p>
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+          </Card>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1">
+          {currentTab === 'personal' && (
+            <div className="space-y-6">
+              {/* Personal Information Card */}
+              <Card className="p-6">
+                <h2 className="text-lg font-semibold text-white mb-1">Personal information</h2>
+                <p className="text-sm text-neutral-400 mb-6">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+
+                {/* Full name */}
+                <div className="space-y-6">
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <User className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Full name</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email address */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <Mail className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Email address</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Photo */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <svg className="w-4 h-4 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm text-neutral-300">Photo</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-6">
+                        {/* Avatar with delete */}
+                        <div className="flex flex-col items-center gap-1">
+                          <Avatar
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+                            size="xl"
+                          />
+                          <button className="text-xs text-neutral-400 hover:text-red-400 transition-colors">
+                            Delete
+                          </button>
+                        </div>
+
+                        {/* Upload area */}
+                        <div className="flex-1 border-2 border-dashed border-neutral-600 rounded-xl p-6 text-center hover:border-primary/50 transition-colors cursor-pointer">
+                          <div className="w-10 h-10 bg-neutral-700 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                            <Upload className="w-5 h-5 text-neutral-400" />
+                          </div>
+                          <p className="text-sm">
+                            <span className="text-primary">Click to upload</span>
+                            <span className="text-neutral-400"> or drag and drop</span>
+                          </p>
+                          <p className="text-xs text-neutral-500 mt-1">
+                            SVG, PNG, JPG or GIF (max. 800 x 400px)
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Short description */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <Pencil className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Short description</span>
+                    </div>
+                    <div className="flex-1">
+                      <textarea
+                        value={formData.shortDescription}
+                        onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
+                        placeholder="Write a short bio about you..."
+                        rows={4}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50 resize-none placeholder:text-neutral-500"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </button>
-            ))}
-          </div>
+              </Card>
 
-          {/* User Profile Section */}
-          <div className="mt-8 pt-6 border-t border-neutral-600">
-            <div className="text-center">
-              <div className="relative inline-block">
-                <Avatar size="xl" name="Upload photo" />
-                <button className="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <Upload className="w-4 h-4 text-white" />
-                </button>
-              </div>
-              <p className="mt-3 text-sm text-neutral-300">
-                Allowed *.jpeg, *.jpg and *.png
-              </p>
-              <p className="text-xs text-neutral-400">Max size of 5 MB</p>
-            </div>
+              {/* Basic Information Card */}
+              <Card className="p-6">
+                <h2 className="text-lg font-semibold text-white mb-1">Basic information</h2>
+                <p className="text-sm text-neutral-400 mb-6">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
 
-            <p className="text-sm text-neutral-400 mt-6">
-              Basic information
-              <br />
-              <span className="text-neutral-300">
-                Used to identify you on the platform
-              </span>
-            </p>
+                <div className="space-y-6">
+                  {/* Phone */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <Phone className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Phone</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
 
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-neutral-400">📞 Phone:</span>
-                <span className="text-white">+001 1234 - 1234</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-neutral-400">✉️ Email:</span>
-                <span className="text-white">john.keanu@g...</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-neutral-400">📍 Location:</span>
-                <span className="text-white">United states</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-neutral-400">🏢 Address:</span>
-                <span className="text-white">United states</span>
-              </div>
-            </div>
-          </div>
-        </Card>
+                  {/* Position */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <Briefcase className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Position</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={formData.position}
+                        onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
 
-        {/* Form Content */}
-        <Card className="col-span-2 p-6">
-          {currentStep === 1 && (
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Personal Information
-              </h3>
-              <p className="text-sm text-neutral-400 mb-6">
-                Provide your account username and password credentials.
-              </p>
+                  {/* Location */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <MapPin className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Location</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={formData.location}
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                <Input
-                  label="First Name"
-                  placeholder="Enter your first name"
-                  value={formData.firstName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, firstName: e.target.value })
-                  }
-                />
-                <Input
-                  label="Last Name"
-                  placeholder="Enter your last name"
-                  value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, lastName: e.target.value })
-                  }
-                />
-                <Input
-                  label="Email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                />
-                <Input
-                  label="Phone"
-                  placeholder="Enter your phone number"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                />
-                <div className="col-span-2">
-                  <label className="block text-sm text-neutral-300 mb-1.5">
-                    Country
-                  </label>
-                  <select
-                    className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
-                    value={formData.country}
-                    onChange={(e) =>
-                      setFormData({ ...formData, country: e.target.value })
-                    }
-                  >
-                    <option value="US">United States</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="CA">Canada</option>
-                    <option value="AU">Australia</option>
-                  </select>
+                  {/* Website */}
+                  <div className="flex items-start gap-6">
+                    <div className="w-40 flex items-center gap-2 pt-2.5">
+                      <Globe className="w-4 h-4 text-neutral-400" />
+                      <span className="text-sm text-neutral-300">Website</span>
+                    </div>
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={formData.website}
+                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg text-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="col-span-2">
-                  <Input
-                    label="Address"
-                    placeholder="Enter your address"
-                    value={formData.address}
-                    onChange={(e) =>
-                      setFormData({ ...formData, address: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
+              </Card>
             </div>
           )}
 
-          {currentStep === 2 && (
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Team Information
-              </h3>
-              <p className="text-sm text-neutral-400 mb-6">
-                Provide your team information.
-              </p>
+          {currentTab === 'team' && (
+            <Card className="p-6">
+              <h2 className="text-lg font-semibold text-white mb-1">Team Information</h2>
+              <p className="text-sm text-neutral-400 mb-6">Manage your team members and permissions.</p>
 
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-6">
@@ -242,68 +253,38 @@ export default function AddUserPage() {
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="flex items-center gap-3 p-4 bg-neutral-600/30 rounded-xl">
-                    <input
-                      type="checkbox"
-                      className="w-4 h-4 rounded border-neutral-500"
-                    />
-                    <div className="flex items-center gap-2">
-                      <span className="text-white">🎨 Design</span>
-                    </div>
+                    <input type="checkbox" className="w-4 h-4 rounded border-neutral-500 accent-primary" />
+                    <span className="text-white">🎨 Design</span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-neutral-600/30 rounded-xl">
-                    <input
-                      type="checkbox"
-                      className="w-4 h-4 rounded border-neutral-500"
-                    />
-                    <div className="flex items-center gap-2">
-                      <span className="text-white">💻 Develop</span>
-                    </div>
+                    <input type="checkbox" className="w-4 h-4 rounded border-neutral-500 accent-primary" />
+                    <span className="text-white">💻 Develop</span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-neutral-600/30 rounded-xl">
-                    <input
-                      type="checkbox"
-                      className="w-4 h-4 rounded border-neutral-500"
-                    />
-                    <div className="flex items-center gap-2">
-                      <span className="text-white">📊 Billing</span>
-                    </div>
+                    <input type="checkbox" className="w-4 h-4 rounded border-neutral-500 accent-primary" />
+                    <span className="text-white">📊 Billing</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           )}
 
-          {currentStep === 3 && (
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Payment Methods
-              </h3>
-              <p className="text-sm text-neutral-400 mb-6">
-                Set up your payment method.
-              </p>
+          {currentTab === 'billing' && (
+            <Card className="p-6">
+              <h2 className="text-lg font-semibold text-white mb-1">Payment Methods</h2>
+              <p className="text-sm text-neutral-400 mb-6">Set up your payment method.</p>
 
               <div className="space-y-4">
                 <div className="p-4 bg-neutral-600/30 rounded-xl border-2 border-primary">
                   <div className="flex items-center gap-4">
-                    <input
-                      type="radio"
-                      name="payment"
-                      defaultChecked
-                      className="w-4 h-4"
-                    />
+                    <input type="radio" name="payment" defaultChecked className="w-4 h-4 accent-primary" />
                     <div className="flex-1">
                       <p className="text-white font-medium">Credit card</p>
-                      <p className="text-sm text-neutral-400">
-                        We support Mastercard, Visa, Discover and Stripe
-                      </p>
+                      <p className="text-sm text-neutral-400">We support Mastercard, Visa, Discover and Stripe</p>
                     </div>
                     <div className="flex gap-2">
-                      <div className="w-10 h-6 bg-blue-600 rounded flex items-center justify-center text-xs text-white">
-                        VISA
-                      </div>
-                      <div className="w-10 h-6 bg-red-500 rounded flex items-center justify-center text-xs text-white">
-                        MC
-                      </div>
+                      <div className="w-10 h-6 bg-blue-600 rounded flex items-center justify-center text-xs text-white font-bold">VISA</div>
+                      <div className="w-10 h-6 bg-red-500 rounded flex items-center justify-center text-xs text-white font-bold">MC</div>
                     </div>
                   </div>
                 </div>
@@ -316,41 +297,13 @@ export default function AddUserPage() {
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  Billing address
-                </h3>
-                <p className="text-sm text-neutral-400 mb-6">
-                  Used for invoices and receipts.
-                </p>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <input type="checkbox" className="w-4 h-4 rounded" />
-                    <span className="text-sm text-neutral-300">
-                      The billing is the same as contact address
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <Input label="Country" placeholder="Select country" />
-                    <Input label="State" placeholder="Select state" />
-                    <Input label="City" placeholder="Enter city" />
-                    <Input label="Zip" placeholder="Enter zip code" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            </Card>
           )}
 
-          {currentStep === 4 && (
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Device notifications
-              </h3>
-              <p className="text-sm text-neutral-400 mb-6">
-                Configure your notification preferences.
-              </p>
+          {currentTab === 'notifications' && (
+            <Card className="p-6">
+              <h2 className="text-lg font-semibold text-white mb-1">Device notifications</h2>
+              <p className="text-sm text-neutral-400 mb-6">Configure your notification preferences.</p>
 
               <div className="space-y-4">
                 {[
@@ -358,10 +311,7 @@ export default function AddUserPage() {
                   { label: 'Email notifications', sublabel: 'Receive email notifications', enabled: false },
                   { label: 'Slack notifications', sublabel: 'Receive Slack notifications', enabled: true },
                 ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between p-4 bg-neutral-600/30 rounded-xl"
-                  >
+                  <div key={index} className="flex items-center justify-between p-4 bg-neutral-600/30 rounded-xl">
                     <div>
                       <p className="text-white font-medium">{item.label}</p>
                       <p className="text-sm text-neutral-400">{item.sublabel}</p>
@@ -382,51 +332,9 @@ export default function AddUserPage() {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  Summary notifications
-                </h3>
-                <p className="text-sm text-neutral-400 mb-6">
-                  Set up notification frequency.
-                </p>
-
-                <div className="space-y-3">
-                  {['Daily summary', 'Weekly summary', 'Monthly summary'].map(
-                    (label, index) => (
-                      <label
-                        key={index}
-                        className="flex items-center gap-3 p-4 bg-neutral-600/30 rounded-xl cursor-pointer"
-                      >
-                        <input
-                          type="radio"
-                          name="summary"
-                          defaultChecked={index === 0}
-                          className="w-4 h-4"
-                        />
-                        <span className="text-white">{label}</span>
-                      </label>
-                    )
-                  )}
-                </div>
-              </div>
-            </div>
+            </Card>
           )}
-
-          {/* Navigation Buttons */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-neutral-600">
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              disabled={currentStep === 1}
-            >
-              Back
-            </Button>
-            <Button onClick={handleNext}>
-              {currentStep === 4 ? 'Save user' : 'Next step'}
-            </Button>
-          </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
