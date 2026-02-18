@@ -14,8 +14,10 @@
     "preview_url": "https://ta-01kg9f7qr6jbx444wdapw0kz8s-5173.wo-lbhxv1c7rxf1avh013njeuuov.w.modal.host",
     "preview_url_at": "2026-01-31T07:34:33.512649+00:00",
     "github_repo": "https://github.com/metaphi-agent/figma-eval-8b3bf60b-45e4-41f1-9cd5-fe40d2471e98-claude_code",
-    "github_repo_at": "2026-01-31T07:34:33.577696+00:00"
+    "github_repo_at": "2026-01-31T07:34:33.577696+00:00",
+    "deployed_url": "https://storage.googleapis.com/metaphi-agent/figma-claude_code-agent/8b3bf60b-45e4-41f1-9cd5-fe40d2471e98/index.html",
+    "deployed_url_at": "2026-02-18T12:17:40.420408+00:00"
   },
   "notes": [],
-  "updated_at": "2026-01-31T07:34:33.642175+00:00"
+  "updated_at": "2026-02-18T12:17:40.420408+00:00"
 }
